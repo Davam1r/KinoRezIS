@@ -2,3 +2,4 @@
 *.code-workspace
 .mypy_cache/
 *tst
+__pycache__/
