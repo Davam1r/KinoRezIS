@@ -1,4 +1,5 @@
 
+
 class Accountant:
     def __init__(self, name: str, login: str, password: str) -> None:
         self.name = name
