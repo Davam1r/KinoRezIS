@@ -1,3 +1,3 @@
 *.db
 *.code-workspace
-/.mypy_cache
+.mypy_cache/
