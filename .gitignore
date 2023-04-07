@@ -1,3 +1,4 @@
 *.db
 *.code-workspace
 .mypy_cache/
+*tst
