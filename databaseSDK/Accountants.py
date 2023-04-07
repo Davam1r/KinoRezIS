@@ -1,6 +1,6 @@
 import sqlite3
 from typing import List
-from data import Accountant
+from data.accountant import Accountant
 
 
 cursor = sqlite3.connect("users.db").cursor()

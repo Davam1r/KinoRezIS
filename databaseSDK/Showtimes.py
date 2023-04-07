@@ -1,6 +1,6 @@
 import sqlite3
 from typing import List
-from data import Showtime
+from data.showtime import Showtime
 
 
 cursor = sqlite3.connect("users.db").cursor()

@@ -1,6 +1,6 @@
 import sqlite3
 from typing import List
-from data import Reservation
+from data.reservation import Reservation
 
 
 cursor = sqlite3.connect("users.db").cursor()
