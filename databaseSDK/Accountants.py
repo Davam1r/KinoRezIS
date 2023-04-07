@@ -23,8 +23,8 @@ def add(accountant: Accountant) -> None:
 
 def remove(accountant: Accountant) -> None:
     __cursor.execute("DELETE FROM accountants WHERE \
-                     name=? AND login=? AND password=?",
-                     (accountant.name, accountant.login, accountant.password))
+                     name=? AND login=?",
+                     (accountant.name, accountant.login))
     __cursor.connection.commit()
 
 
