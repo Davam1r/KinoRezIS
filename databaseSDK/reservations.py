@@ -1,9 +1,6 @@
 from typing import List
 from data.reservation import Reservation
-from databaseSDK._db_cursor import get_cursor as __get_cursor
-
-
-__cursor = __get_cursor()
+from databaseSDK._db_cursor import cursor as __cursor
 
 
 __cursor.execute('''CREATE TABLE IF NOT EXISTS reservations

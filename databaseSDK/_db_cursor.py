@@ -1,8 +1,7 @@
 import sqlite3
 
 
-DB_NAME = "users.db"
+DB_NAME = ".data.db"
 
 
-def get_cursor() -> sqlite3.Cursor:
-    return sqlite3.connect(DB_NAME).cursor()
+cursor = sqlite3.connect(DB_NAME).cursor()
