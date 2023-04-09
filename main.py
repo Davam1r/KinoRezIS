@@ -1,11 +1,17 @@
-from tkinter import Tk
-import gui
+from gui_and_logic.login import login
+from constants import ADMIN, ACCOUNTANT
 
 
-def foo(root: Tk) -> None:
-    print("finished")
-    root.destroy()
+def main() -> int:
+    logged_user = login()
+    if logged_user == ADMIN:
+        pass
+    elif logged_user == ACCOUNTANT:
+        pass
+    else:
+        return -1
+    return 0
 
 
-def main() -> None:
-    gui.login(foo)
+if __name__ == "__main__":
+    print(main())

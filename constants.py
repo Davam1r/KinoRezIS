@@ -1,0 +1,7 @@
+
+
+BASEFONT = ("Arial", 14)
+
+ADMIN_LOGIN, ADMIN_PASSWORD = "admin", "1234"
+
+ADMIN, ACCOUNTANT = 1, 2
