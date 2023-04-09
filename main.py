@@ -1,4 +1,3 @@
-from time import sleep
 from data.showtime import Showtime
 from databaseSDK import showtimes
 
@@ -12,4 +11,3 @@ for i in range(3):
 for item in showtimes.get_all():
     print(" ".join([str(item.id), item.movie_name, item.date, item.time]))
 
-sleep(3)
