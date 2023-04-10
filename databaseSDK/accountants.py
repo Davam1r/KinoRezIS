@@ -9,6 +9,11 @@ __cursor.connection.commit()
 
 
 def add(accountant: Accountant) -> None:
+    """
+    Adds an accountant to database
+
+    @param accountant
+    """
     if (accountant.name is None or accountant.login is None or
             accountant.password is None):
         return
@@ -19,6 +24,11 @@ def add(accountant: Accountant) -> None:
 
 
 def remove(accountant: Accountant) -> None:
+    """
+    Removes an accountant from database
+
+    @param accountant
+    """
     __cursor.execute("DELETE FROM accountants WHERE \
                      name=? AND login=?",
                      (accountant.name, accountant.login))
@@ -26,6 +36,11 @@ def remove(accountant: Accountant) -> None:
 
 
 def find_by_name(inp_name: str) -> List[Accountant]:
+    """
+    @param inp_name accountant name
+
+    @return list of accountants with inp_name
+    """
     __cursor.execute("SELECT * FROM accountants \
                    WHERE name=?", (inp_name,))
 
@@ -37,6 +52,13 @@ def find_by_name(inp_name: str) -> List[Accountant]:
 
 
 def accountant_exists(inp_login: str, inp_password: str) -> bool:
+    """
+    @param  inp_login
+    @param  inp_password
+
+    @return false if accountant with inp_login and inp_name was not found
+            otherwise true
+    """
     __cursor.execute("SELECT * FROM accountants \
                    WHERE login=? AND password=?", (inp_login, inp_password))
 
@@ -46,6 +68,9 @@ def accountant_exists(inp_login: str, inp_password: str) -> bool:
 
 
 def get_all() -> List[Accountant]:
+    """
+    @return list of all accountants
+    """
     accountants: List[Accountant] = []
 
     for name, login, password in __cursor.execute("SELECT * FROM accountants"):

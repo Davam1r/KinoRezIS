@@ -27,7 +27,7 @@ def login() -> int:
     """
     Initiates login screen and handles user verification
 
-    @return value representing the user
+    @return int value representing the user
     """
     root = Tk()
     root.title("KinoRezIS")

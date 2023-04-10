@@ -9,6 +9,11 @@ __cursor.connection.commit()
 
 
 def add(showtime: Showtime) -> None:
+    """
+    Adds a showtime to database
+
+    @param showtime
+    """
     if (showtime.id is None or showtime.movie_name is None or
             showtime.date is None or showtime.id is None):
         return
@@ -20,12 +25,22 @@ def add(showtime: Showtime) -> None:
 
 
 def remove(showtime: Showtime) -> None:
+    """
+    Removes a showtime from database
+
+    @param showtime
+    """
     __cursor.execute("DELETE FROM showtimes WHERE \
                      rowid=?", (showtime.id, ))
     __cursor.connection.commit()
 
 
 def find_by_name(inp_name: str) -> List[Showtime]:
+    """
+    @param inp_name movie name
+
+    @return list of showtimes for certain movie name
+    """
     __cursor.execute("SELECT rowid, name, date, time FROM showtimes \
                    WHERE name=?", (inp_name,))
 
@@ -37,6 +52,9 @@ def find_by_name(inp_name: str) -> List[Showtime]:
 
 
 def get_all() -> List[Showtime]:
+    """
+    @return list of all showtimes
+    """
     showtimes: List[Showtime] = []
 
     for id, name, date, time in __cursor.execute(

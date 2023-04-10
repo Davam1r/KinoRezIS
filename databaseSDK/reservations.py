@@ -9,6 +9,11 @@ __cursor.connection.commit()
 
 
 def add(reservation: Reservation) -> None:
+    """
+    Adds a reservation to database
+
+    @param reservation
+    """
     if (reservation.name is None or reservation.showtime is None):
         return
 
@@ -18,6 +23,11 @@ def add(reservation: Reservation) -> None:
 
 
 def remove(reservation: Reservation) -> None:
+    """
+    Removes a reservation from database
+
+    @param reservation
+    """
     __cursor.execute("DELETE FROM reservations WHERE \
                     name=? AND showtimeID=?",
                      (reservation.name, reservation.showtime.id))
@@ -25,6 +35,11 @@ def remove(reservation: Reservation) -> None:
 
 
 def find_by_name(inp_name: str) -> List[Reservation]:
+    """
+    @param inp_name reservation customer name
+
+    @return list of reservations with inp_name
+    """
     __cursor.execute("SELECT * FROM reservations \
                    WHERE name=?", (inp_name,))
 
@@ -36,6 +51,9 @@ def find_by_name(inp_name: str) -> List[Reservation]:
 
 
 def get_all() -> List[Reservation]:
+    """
+    @return list of all reservations
+    """
     reservations: List[Reservation] = []
 
     for name, showtimeID in __cursor.execute("SELECT * FROM reservations"):
