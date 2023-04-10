@@ -36,6 +36,15 @@ def find_by_name(inp_name: str) -> List[Accountant]:
     return accountants
 
 
+def accountant_exists(inp_login: str, inp_password: str) -> bool:
+    __cursor.execute("SELECT * FROM accountants \
+                   WHERE login=? AND password=?", (inp_login, inp_password))
+
+    entry = __cursor.fetchone()
+
+    return entry is not None
+
+
 def get_all() -> List[Accountant]:
     accountants: List[Accountant] = []
 

@@ -1,27 +1,21 @@
 from tkinter import Tk, Label, Entry, Button, Frame, messagebox
-from constants import BASEFONT, ADMIN, ACCOUNTANT
-
+from constants import BASEFONT, ADMIN, ACCOUNTANT, ADMIN_LOGIN, ADMIN_PASSWORD
+from databaseSDK.accountants import accountant_exists as __is_accountant
 
 __logged_user = 0
 
 
-def __is_accountant() -> bool:
-    # TODO
-    return False
+def __is_admin(login: str, password: str) -> bool:
+    return login == ADMIN_LOGIN and password == ADMIN_PASSWORD
 
 
-def __is_admin() -> bool:
-    # TODO
-    return False
-
-
-def __user_verification(root: Tk) -> None:
+def __user_verification(root: Tk, login: str, password: str) -> None:
     global __logged_user
-    if __is_admin():
+    if __is_admin(login, password):
         __logged_user = ADMIN
         root.destroy()
         return
-    if __is_accountant():
+    if __is_accountant(login, password):
         __logged_user = ACCOUNTANT
         root.destroy()
         return
@@ -37,18 +31,20 @@ def login() -> int:
     frame = Frame()
     frame.pack(pady=30)
 
-    login_label = Label(frame, text="login: ", font=BASEFONT)
-    login_label.grid(row=0, column=0)
-    password_label = Label(frame, text="heslo: ", font=BASEFONT)
-    password_label.grid(row=1, column=0)
+    log_label = Label(frame, text="login: ", font=BASEFONT)
+    log_label.grid(row=0, column=0)
+    pass_label = Label(frame, text="heslo: ", font=BASEFONT)
+    pass_label.grid(row=1, column=0)
 
-    login_entry = Entry(frame, font=BASEFONT)
-    login_entry.grid(row=0, column=1, pady=20)
-    password_entry = Entry(frame, show="*", font=BASEFONT)
-    password_entry.grid(row=1, column=1)
+    log_entry = Entry(frame, font=BASEFONT)
+    log_entry.grid(row=0, column=1, pady=20)
+    pass_entry = Entry(frame, show="*", font=BASEFONT)
+    pass_entry.grid(row=1, column=1)
 
     button = Button(frame, text="Přihlásit", font=("Arial", 15),
-                    command=lambda: __user_verification(root))
+                    command=lambda: __user_verification(root,
+                                                        log_entry.get(),
+                                                        pass_entry.get()))
     button.grid(row=2, pady=20, columnspan=2)
 
     root.mainloop()
