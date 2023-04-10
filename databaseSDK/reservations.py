@@ -1,5 +1,5 @@
 from typing import List
-from data.reservation import Reservation
+from data import Reservation
 from databaseSDK._db_cursor import cursor as __cursor
 
 

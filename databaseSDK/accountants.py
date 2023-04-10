@@ -1,5 +1,5 @@
 from typing import List
-from data.accountant import Accountant
+from data import Accountant
 from databaseSDK._db_cursor import cursor as __cursor
 
 

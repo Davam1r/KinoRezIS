@@ -1,5 +1,5 @@
 from typing import List
-from data.showtime import Showtime
+from data import Showtime
 from databaseSDK._db_cursor import cursor as __cursor
 
 
