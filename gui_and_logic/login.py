@@ -24,6 +24,11 @@ def __user_verification(root: Tk, login: str, password: str) -> None:
 
 
 def login() -> int:
+    """
+    Initiates login screen and handles user verification
+
+    @return value representing the user
+    """
     root = Tk()
     root.title("KinoRezIS")
     root.geometry("400x300")
