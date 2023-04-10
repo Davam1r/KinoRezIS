@@ -1,5 +1,6 @@
 from tkinter import Tk, Label, Entry, Button, Frame, messagebox
-from constants import BASEFONT, ADMIN, ACCOUNTANT, ADMIN_LOGIN, ADMIN_PASSWORD
+from constants import BASEFONT, BUTTONFONT, ADMIN, ACCOUNTANT,\
+                        ADMIN_LOGIN, ADMIN_PASSWORD
 from databaseSDK.accountants import accountant_exists as __is_accountant
 
 __logged_user = 0
@@ -46,7 +47,7 @@ def login() -> int:
     pass_entry = Entry(frame, show="*", font=BASEFONT)
     pass_entry.grid(row=1, column=1)
 
-    button = Button(frame, text="Přihlásit", font=("Arial", 15),
+    button = Button(frame, text="Přihlásit", font=BUTTONFONT,
                     command=lambda: __user_verification(root,
                                                         log_entry.get(),
                                                         pass_entry.get()))

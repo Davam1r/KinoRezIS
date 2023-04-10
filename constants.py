@@ -1,7 +1,13 @@
 
 
-BASEFONT = ("Arial", 14)
-
 ADMIN_LOGIN, ADMIN_PASSWORD = "admin", "1234"
 
+BASEFONT, BUTTONFONT = ("Arial", 14), ("Arial", 16)
+
+# logged users
 ADMIN, ACCOUNTANT = 1, 2
+
+# admin options
+ADD_SHOWTIME, MANAGE_ACCOUNTANTS = 10, 20
+# accountant options
+ADD_RESERVATION, REMOVE_RESERVATION = 30, 40
