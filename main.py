@@ -1,15 +1,43 @@
-from gui_and_logic.login import login
+from gui_and_logic import login, admin_options, accountant_options
 from constants import ADMIN, ACCOUNTANT
+from constants import ADD_SHOWTIME, ADD_RESERVATION,\
+                        MANAGE_ACCOUNTANTS, REMOVE_RESERVATION
+
+
+def admin() -> None:
+    while (True):
+        chosen_option = admin_options()
+        if chosen_option == ADD_SHOWTIME:
+            print("add showtime")
+            pass
+        elif chosen_option == MANAGE_ACCOUNTANTS:
+            print("manage accountants")
+            pass
+        else:
+            break
+
+
+def accountant() -> None:
+    while (True):
+        chosen_option = accountant_options()
+        if chosen_option == ADD_RESERVATION:
+            print("add reservation")
+            pass
+        elif chosen_option == REMOVE_RESERVATION:
+            print("remove reservation")
+            pass
+        else:
+            break
 
 
 def main() -> int:
     logged_user = login()
     if logged_user == ADMIN:
         print("admin logged")
-        pass
+        admin()
     elif logged_user == ACCOUNTANT:
         print("accountant_logged")
-        pass
+        accountant()
     else:
         return -1
     return 0

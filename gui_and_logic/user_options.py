@@ -57,6 +57,9 @@ def admin_options() -> int:
 
     @return int value representing chosen option
     """
+    global __selected_option
+    __selected_option = 0
+
     root = Tk()
 
     __two_buttons(root,
@@ -72,6 +75,9 @@ def accountant_options() -> int:
 
     @return int value representing chosen option
     """
+    global __selected_option
+    __selected_option = 0
+
     root = Tk()
 
     __two_buttons(root,
