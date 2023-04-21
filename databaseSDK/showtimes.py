@@ -14,7 +14,7 @@ def add(showtime: Showtime) -> None:
 
     @param showtime
     """
-    if (showtime.id is None or showtime.movie_name is None or
+    if (showtime.movie_name is None or
             showtime.date is None or showtime.id is None):
         return
 
@@ -46,7 +46,7 @@ def find_by_name(inp_name: str) -> List[Showtime]:
 
     showtimes: List[Showtime] = []
     for id, name, date, time in __cursor.fetchall():
-        showtimes.append(Showtime(id, name, date, time))
+        showtimes.append(Showtime(name, date, time, id))
 
     return showtimes
 
@@ -59,6 +59,6 @@ def get_all() -> List[Showtime]:
 
     for id, name, date, time in __cursor.execute(
             "SELECT rowid, name, date, time FROM showtimes"):
-        showtimes.append(Showtime(id, name, date, time))
+        showtimes.append(Showtime(name, date, time, id))
 
     return showtimes
