@@ -32,7 +32,7 @@ def login() -> int:
     """
     root = Tk()
     root.title("KinoRezIS")
-    root.geometry("400x300")
+    root.geometry("400x300+400+300")
 
     frame = Frame()
     frame.pack(pady=30)
@@ -52,6 +52,10 @@ def login() -> int:
                                                         log_entry.get(),
                                                         pass_entry.get()))
     button.grid(row=2, pady=20, columnspan=2)
+    root.bind("<Return>",  # enter key can act as button press too
+              lambda _: __user_verification(root,
+                                            log_entry.get(),
+                                            pass_entry.get()))
 
     root.mainloop()
 

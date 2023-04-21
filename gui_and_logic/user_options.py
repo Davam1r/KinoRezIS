@@ -35,7 +35,7 @@ def __two_buttons(root: Tk,
                   txt1: str, cmd1: Callable[[], None],
                   txt2: str, cmd2: Callable[[], None]) -> None:
     root.title("KinoRezIS")
-    root.geometry("400x300")
+    root.geometry("400x300+400+300")
 
     frame = Frame()
     frame.pack(pady=50)
