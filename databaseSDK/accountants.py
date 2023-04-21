@@ -51,7 +51,7 @@ def find_by_name(inp_name: str) -> List[Accountant]:
     return accountants
 
 
-def accountant_exists(inp_login: str, inp_password: str) -> bool:
+def accountant_login_exists(inp_login: str, inp_password: str) -> bool:
     """
     @param  inp_login
     @param  inp_password
