@@ -1,6 +1,7 @@
-from databaseSDK import showtimes
+from gui_and_logic import manage_accountants
 
-for showtime in showtimes.get_all():
-    print(showtime.movie_name + " | " +
-          showtime.date + " | " +
-          showtime.time)
+# for i in range(1, 21):
+#     accountants.add(Accountant("Jana Nováková", str(i), str(i)))
+
+
+manage_accountants()
