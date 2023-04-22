@@ -41,7 +41,7 @@ def find_by_name(inp_name: str) -> List[Reservation]:
     @return list of reservations with inp_name
     """
     __cursor.execute("SELECT * FROM reservations \
-                   WHERE name=?", (inp_name,))
+                WHERE name LIKE ? COLLATE NOCASE", ('%'+inp_name+'%',))
 
     reservations: List[Reservation] = []
     for name, showtimeID in __cursor.fetchall():

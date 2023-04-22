@@ -42,7 +42,7 @@ def find_by_name(inp_name: str) -> List[Showtime]:
     @return list of showtimes for certain movie name
     """
     __cursor.execute("SELECT rowid, name, date, time FROM showtimes \
-                   WHERE name=?", (inp_name,))
+                WHERE name LIKE ? COLLATE NOCASE", ('%'+inp_name+'%',))
 
     showtimes: List[Showtime] = []
     for id, name, date, time in __cursor.fetchall():
