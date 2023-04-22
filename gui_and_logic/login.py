@@ -20,7 +20,7 @@ def __user_verification(root: Tk, login: str, password: str) -> None:
         __logged_user = ACCOUNTANT
         root.destroy()
         return
-    messagebox.showinfo("error", "neexistující uživatel")
+    messagebox.showerror("error", "neexistující uživatel")
     return
 
 
