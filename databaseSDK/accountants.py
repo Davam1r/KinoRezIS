@@ -42,7 +42,7 @@ def find_by_name(inp_name: str) -> List[Accountant]:
     @return list of accountants with inp_name
     """
     __cursor.execute("SELECT * FROM accountants \
-                   WHERE name=?", (inp_name,))
+                WHERE name LIKE ? COLLATE NOCASE", ('%'+inp_name+'%',))
 
     accountants: List[Accountant] = []
     for name, login, password in __cursor.fetchall():
