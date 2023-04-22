@@ -30,8 +30,8 @@ def remove(accountant: Accountant) -> None:
     @param accountant
     """
     __cursor.execute("DELETE FROM accountants WHERE \
-                     name=? AND login=?",
-                     (accountant.name, accountant.login))
+                     name=? AND login=? AND password=?",
+                     (accountant.name, accountant.login, accountant.password))
     __cursor.connection.commit()
 
 
