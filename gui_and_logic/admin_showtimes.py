@@ -49,11 +49,11 @@ def __check_showtime_format(showtime: Showtime) -> bool:
 
 def __add_showtime_to_db(showtime: Showtime, entries: list[Entry]) -> None:
     if not __check_showtime_format(showtime):
-        messagebox.showinfo("error",
-                            "Termín nesplňuje formát nebo je" +
-                            "příliš vzdálený současnosti.\n\n" +
-                            "Formát data:  DEN.MESIC.ROK\n" +
-                            "Formát času:  HODINA:MINUT")
+        messagebox.showerror("error",
+                             "Termín nesplňuje formát nebo je" +
+                             "příliš vzdálený současnosti.\n\n" +
+                             "Formát data:  DEN.MESIC.ROK\n" +
+                             "Formát času:  HODINA:MINUT")
         return
 
     showtimes.add(showtime)

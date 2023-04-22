@@ -29,9 +29,16 @@ def __add_accountant(acc: Accountant, table: Treeview) -> None:
 
 
 def __remove_accountant(acc: Accountant, table: Treeview) -> None:
-    accountants.remove(acc)
-    table.delete(table.focus())
-    messagebox.showinfo('', "Účetní byl úspěšně smazán")
+    selected = table.focus()
+    if selected != "":
+        accountants.remove(acc)
+        table.delete(selected)
+        messagebox.showinfo('', "Účetní byl/a úspěšně smazán/a")
+    else:
+        messagebox.showerror('',
+                             "Účetní ke smazání nebyl vybrán\n\n" +
+                             "Proveďte výběr dvojklikem na řádek v tabulce,\n"
+                             + "data z řádku se zobrazí ve spodní části okna.")
 
 
 def __accountant_table(frame: LabelFrame) -> Treeview:
