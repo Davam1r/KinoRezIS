@@ -6,10 +6,14 @@ from data import Accountant
 from constants import BASEFONT, BUTTONFONT
 
 
-def __double_click_load_data(table: Treeview,
-                             name: StringVar, login: StringVar,
-                             passwd: StringVar) -> None:
-    item = table.item(table.focus())
+def __click_load_data(table: Treeview,
+                      name: StringVar, login: StringVar,
+                      passwd: StringVar) -> None:
+    selected = table.focus()
+    if selected == "":
+        return
+
+    item = table.item(selected)
 
     name.set(item["values"][0])
     login.set(item["values"][1])
@@ -23,25 +27,34 @@ def __search(table: Treeview, name: str) -> None:
 
 
 def __add_accountant(acc: Accountant, table: Treeview) -> None:
+    if "" in [acc.login, acc.name, acc.password]:
+        messagebox.showerror('', "Informace o účetním nejsou vyplněny.")
+        return
     accountants.add(acc)
     table.insert('', 0, values=(acc.name, acc.login, acc.password))
     messagebox.showinfo('', "Účetní byl úspěšně přidán")
 
 
-def __remove_accountant(acc: Accountant, table: Treeview) -> None:
+def __remove_accountant(table: Treeview) -> None:
     selected = table.focus()
-    if selected != "":
-        accountants.remove(acc)
-        table.delete(selected)
-        messagebox.showinfo('', "Účetní byl/a úspěšně smazán/a")
-    else:
+    if selected == "":
         messagebox.showerror('',
                              "Účetní ke smazání nebyl vybrán\n\n" +
-                             "Proveďte výběr dvojklikem na řádek v tabulce,\n"
+                             "Proveďte výběr kliknutím na řádek v tabulce,\n"
                              + "data z řádku se zobrazí ve spodní části okna.")
+        return
+
+    selected_item = table.item(selected)
+    name = selected_item["values"][0]
+    login = selected_item["values"][1]
+    passwd = selected_item["values"][2]
+
+    accountants.remove(Accountant(name, login, passwd))
+    table.delete(selected)
+    messagebox.showinfo('', "Účetní byl/a úspěšně smazán/a")
 
 
-def __accountant_table(frame: LabelFrame) -> Treeview:
+def __table(frame: LabelFrame) -> Treeview:
     style = Style()
     style.theme_use("clam")
     style.configure("myS.Treeview", font=BASEFONT)
@@ -65,7 +78,7 @@ def __accountant_table(frame: LabelFrame) -> Treeview:
     return table
 
 
-def __accountant_search(frame: LabelFrame, table: Treeview) -> None:
+def __namesearch(frame: LabelFrame, table: Treeview) -> None:
     label1 = Label(frame, text="Vyhledávání dle jména:", font=BASEFONT)
     label1.pack(side="left", padx=20)
     entry = Entry(frame, font=BASEFONT)
@@ -75,7 +88,7 @@ def __accountant_search(frame: LabelFrame, table: Treeview) -> None:
     search_btn.pack(side="left", padx=20)
 
 
-def __accountant_management(frame: LabelFrame, table: Treeview) -> None:
+def __management(frame: LabelFrame, table: Treeview) -> None:
     name, login, passwd = StringVar(), StringVar(), StringVar()
 
     name_l = Label(frame, text="Jméno:", font=BASEFONT)
@@ -100,16 +113,12 @@ def __accountant_management(frame: LabelFrame, table: Treeview) -> None:
                                                passwd.get().strip()),
                                     table))
     delete_btn = Button(frame, text="Smazat účetní", font=BUTTONFONT,
-                        command=lambda: __remove_accountant(
-                                    Accountant(name.get().strip(),
-                                               login.get().strip(),
-                                               passwd.get().strip()),
-                                    table))
+                        command=lambda: __remove_accountant(table))
     add_btn.grid(row=1, column=2, padx=40)
     delete_btn.grid(row=1, column=3)
 
-    # double click item to preload data in entries
-    table.bind("<Double 1>", lambda _: __double_click_load_data(
+    # click item to preload data in entries
+    table.bind("<<TreeviewSelect>>", lambda _: __click_load_data(
                 table, name, login, passwd))
 
 
@@ -127,10 +136,10 @@ def manage_accountants() -> None:
     for f in frame1, frame2, frame3:
         f.pack(fill="both", expand=1, padx=10, pady=10)
 
-    table = __accountant_table(frame1)
+    table = __table(frame1)
 
-    __accountant_search(frame2, table)
+    __namesearch(frame2, table)
 
-    __accountant_management(frame3, table)
+    __management(frame3, table)
 
     root.mainloop()
