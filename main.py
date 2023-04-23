@@ -1,5 +1,6 @@
 from gui_and_logic import login, admin_options, accountant_options
-from gui_and_logic import add_showtime
+from gui_and_logic import add_showtime, add_reservations, accept_reservations,\
+                            manage_accountants
 from constants import ADMIN, ACCOUNTANT
 from constants import ADD_SHOWTIME, ADD_RESERVATION,\
                         MANAGE_ACCOUNTANTS, REMOVE_RESERVATION
@@ -11,7 +12,7 @@ def admin() -> None:
         if chosen_option == ADD_SHOWTIME:
             add_showtime()
         elif chosen_option == MANAGE_ACCOUNTANTS:
-            pass
+            manage_accountants()
         else:
             break
 
@@ -20,9 +21,9 @@ def accountant() -> None:
     while (True):
         chosen_option = accountant_options()
         if chosen_option == ADD_RESERVATION:
-            pass
+            add_reservations()
         elif chosen_option == REMOVE_RESERVATION:
-            pass
+            accept_reservations()
         else:
             break
 
@@ -39,4 +40,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    print(main())
+    main()
