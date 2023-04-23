@@ -22,16 +22,19 @@ def add(reservation: Reservation) -> None:
     __cursor.connection.commit()
 
 
-def remove(reservation: Reservation) -> None:
+def remove(res: Reservation) -> None:
     """
     Removes a reservation from database
 
     @param reservation
     """
-    __cursor.execute("DELETE FROM reservations WHERE \
-                     rowid IN (SELECT rowid FROM reservations WHERE \
-                     name=? AND showtimeID=? LIMIT 1)",
-                     (reservation.name, reservation.showtime.id))
+    __cursor.execute("DELETE FROM reservations WHERE rowid IN \
+                     (SELECT showtimeID FROM reservations JOIN showtimes ON \
+                     reservations.showtimeID=showtimes.rowid WHERE \
+                     reservations.name=? AND showtimes.name=? AND \
+                     showtimes.date=? AND showtimes.time=? LIMIT 1)",
+                     (res.name, res.showtime.movie_name,
+                      res.showtime.date, res.showtime.time))
     __cursor.connection.commit()
 
 
@@ -41,15 +44,15 @@ def find_by_name(inp_name: str) -> List[Reservation]:
 
     @return list of reservations with inp_name
     """
-    __cursor.execute("SELECT reservations.name, reservations.showtimeID, \
+    __cursor.execute("SELECT reservations.name, \
                       showtimes.name, showtimes.date, showtimes.time \
                       FROM reservations JOIN showtimes ON \
                       reservations.showtimeID=showtimes.rowid \
         WHERE reservations.name LIKE ? COLLATE NOCASE", ('%'+inp_name+'%',))
 
     reservations: List[Reservation] = []
-    for name, showtimeID, movie_name, date, time in __cursor.fetchall():
-        showtime = Showtime(movie_name, date, time, showtimeID)
+    for name, movie_name, date, time in __cursor.fetchall():
+        showtime = Showtime(movie_name, date, time)
         reservations.append(Reservation(name, showtime))
 
     return reservations
@@ -59,14 +62,14 @@ def get_all() -> List[Reservation]:
     """
     @return list of all reservations
     """
-    __cursor.execute("SELECT reservations.name, reservations.showtimeID, \
+    __cursor.execute("SELECT reservations.name, \
                       showtimes.name, showtimes.date, showtimes.time \
                       FROM reservations JOIN showtimes ON \
                       reservations.showtimeID=showtimes.rowid")
 
     reservations: List[Reservation] = []
-    for name, showtimeID, movie_name, date, time in __cursor.fetchall():
-        showtime = Showtime(movie_name, date, time, showtimeID)
+    for name, movie_name, date, time in __cursor.fetchall():
+        showtime = Showtime(movie_name, date, time)
         reservations.append(Reservation(name, showtime))
 
     return reservations
