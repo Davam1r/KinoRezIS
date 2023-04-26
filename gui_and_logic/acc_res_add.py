@@ -29,7 +29,7 @@ def __click_load_data(table: Treeview, movie: StringVar,
 def __search(table: Treeview, name: str) -> None:
     table.delete(*table.get_children())
     global __showtimes
-    __showtimes = (showtimes.find_by_name(name))
+    __showtimes = showtimes.find_by_name(name)
     for mov in __showtimes:
         table.insert('', 'end', values=__extract_values(mov))
 
