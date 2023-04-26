@@ -38,12 +38,19 @@ def remove(res: Reservation) -> None:
     __cursor.connection.commit()
 
 
+def __remove_expired() -> None:
+    __cursor.execute("DELETE FROM reservations WHERE rowid NOT IN \
+                     (SELECT rowid FROM showtimes)")
+
+
 def find_by_name(inp_name: str) -> List[Reservation]:
     """
     @param inp_name reservation customer name
 
     @return list of reservations with inp_name
     """
+    __remove_expired()
+
     __cursor.execute("SELECT reservations.name, \
                       showtimes.name, showtimes.date, showtimes.time \
                       FROM reservations JOIN showtimes ON \
@@ -62,6 +69,8 @@ def get_all() -> List[Reservation]:
     """
     @return list of all reservations
     """
+    __remove_expired()
+
     __cursor.execute("SELECT reservations.name, \
                       showtimes.name, showtimes.date, showtimes.time \
                       FROM reservations JOIN showtimes ON \
