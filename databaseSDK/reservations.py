@@ -39,8 +39,9 @@ def remove(res: Reservation) -> None:
 
 
 def __remove_expired() -> None:
-    __cursor.execute("DELETE FROM reservations WHERE rowid NOT IN \
+    __cursor.execute("DELETE FROM reservations WHERE showtimeID NOT IN \
                      (SELECT rowid FROM showtimes)")
+    __cursor.connection.commit()
 
 
 def find_by_name(inp_name: str) -> List[Reservation]:

@@ -37,7 +37,9 @@ def remove(showtime: Showtime) -> None:
 
 
 def __date_expired(showtime_date: str) -> bool:
-    cur_datetime = datetime.now()
+    today = datetime.today()
+    cur_datetime = datetime(today.year, today.month,
+                            today.day)
 
     segments = showtime_date.split(".")
     day, month, year = int(segments[0]), int(segments[1]), int(segments[2])
