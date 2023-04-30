@@ -1,10 +1,10 @@
-from tkinter import Tk, messagebox, LabelFrame, Label, Entry, Button,\
-                    StringVar
-from tkinter.ttk import Treeview, Style
+from tkinter import Button, Entry, Label, LabelFrame, StringVar, Tk, messagebox
+from tkinter.ttk import Style, Treeview
 from typing import Tuple
-from databaseSDK import reservations
-from data import Reservation, Showtime
+
 from constants import BASEFONT, BUTTONFONT
+from data import Reservation, Showtime
+from databaseSDK import reservations
 
 
 def __extract_values(res: Reservation) -> Tuple[str, str, str, str]:

@@ -1,7 +1,7 @@
 from typing import List
+
 from data import Reservation, Showtime
 from databaseSDK._db_cursor import cursor as __cursor
-
 
 __cursor.execute('''CREATE TABLE IF NOT EXISTS reservations
                   (name TEXT, showtimeID INTEGER)''')

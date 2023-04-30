@@ -1,8 +1,8 @@
-from tkinter import Tk, Button, Frame
+from tkinter import Button, Frame, Tk
 from typing import Callable
-from constants import BUTTONFONT, ADD_SHOWTIME, ADD_RESERVATION,\
-                        MANAGE_ACCOUNTANTS, REMOVE_RESERVATION
 
+from constants import (ADD_RESERVATION, ADD_SHOWTIME, BUTTONFONT,
+                       MANAGE_ACCOUNTANTS, REMOVE_RESERVATION)
 
 __selected_option = 0
 

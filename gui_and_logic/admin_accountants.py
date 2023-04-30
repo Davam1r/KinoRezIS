@@ -1,9 +1,9 @@
-from tkinter import Tk, messagebox, LabelFrame, Label, Entry, Button,\
-                    StringVar
-from tkinter.ttk import Treeview, Style
-from databaseSDK import accountants
-from data import Accountant
+from tkinter import Button, Entry, Label, LabelFrame, StringVar, Tk, messagebox
+from tkinter.ttk import Style, Treeview
+
 from constants import BASEFONT, BUTTONFONT
+from data import Accountant
+from databaseSDK import accountants
 
 
 def __click_load_data(table: Treeview,

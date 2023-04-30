@@ -1,5 +1,5 @@
-from gui_and_logic import add_reservations, accept_reservations,\
-                            manage_accountants, add_showtime
+from gui_and_logic import (accept_reservations, add_reservations, add_showtime,
+                           manage_accountants)
 
 # for i in range(1, 21):
 #     accountants.add(Accountant("Jana Nováková", str(i), str(i)))

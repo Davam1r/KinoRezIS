@@ -1,9 +1,8 @@
-from gui_and_logic import login, admin_options, accountant_options
-from gui_and_logic import add_showtime, add_reservations, accept_reservations,\
-                            manage_accountants
-from constants import ADMIN, ACCOUNTANT
-from constants import ADD_SHOWTIME, ADD_RESERVATION,\
-                        MANAGE_ACCOUNTANTS, REMOVE_RESERVATION
+from constants import (ACCOUNTANT, ADD_RESERVATION, ADD_SHOWTIME, ADMIN,
+                       MANAGE_ACCOUNTANTS, REMOVE_RESERVATION)
+from gui_and_logic import (accept_reservations, accountant_options,
+                           add_reservations, add_showtime, admin_options,
+                           login, manage_accountants)
 
 
 def admin() -> None:

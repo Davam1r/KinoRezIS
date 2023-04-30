@@ -1,7 +1,8 @@
-from tkinter import END, Tk, Frame, Entry, Button, Label, messagebox
+from datetime import datetime
+from tkinter import END, Button, Entry, Frame, Label, Tk, messagebox
+
 from constants import BASEFONT, BUTTONFONT
 from data import Showtime
-from datetime import datetime
 from databaseSDK import showtimes
 
 

@@ -1,8 +1,8 @@
+from datetime import datetime
 from typing import List
+
 from data import Showtime
 from databaseSDK._db_cursor import cursor as __cursor
-from datetime import datetime
-
 
 __cursor.execute('''CREATE TABLE IF NOT EXISTS showtimes
                   (name TEXT, date TEXT, time TEXT)''')
