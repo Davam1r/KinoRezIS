@@ -15,7 +15,7 @@ def add(showtime: Showtime) -> None:
 
     @param showtime
     """
-    if (showtime.movie_name is None or
+    if (showtime is None or showtime.movie_name is None or
             showtime.date is None or showtime.time is None):
         return
 
