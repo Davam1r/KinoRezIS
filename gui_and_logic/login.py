@@ -1,6 +1,7 @@
-from tkinter import Tk, Label, Entry, Button, Frame, messagebox
-from constants import BASEFONT, BUTTONFONT, ADMIN, ACCOUNTANT,\
-                        ADMIN_LOGIN, ADMIN_PASSWORD
+from tkinter import Button, Entry, Frame, Label, Tk, messagebox
+
+from constants import (ACCOUNTANT, ADMIN, ADMIN_LOGIN, ADMIN_PASSWORD,
+                       BASEFONT, BUTTONFONT)
 from databaseSDK.accountants import accountant_login_exists as __is_accountant
 
 __logged_user = 0

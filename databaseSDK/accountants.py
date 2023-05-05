@@ -1,7 +1,7 @@
 from typing import List
+
 from data import Accountant
 from databaseSDK._db_cursor import cursor as __cursor
-
 
 __cursor.execute('''CREATE TABLE IF NOT EXISTS accountants
                   (name TEXT, login TEXT, password TEXT)''')

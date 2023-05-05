@@ -1,10 +1,10 @@
-from tkinter import Tk, messagebox, LabelFrame, Label, Entry, Button,\
-                    StringVar
-from tkinter.ttk import Treeview, Style
-from typing import Tuple, List
-from databaseSDK import reservations, showtimes
-from data import Reservation, Showtime
+from tkinter import Button, Entry, Label, LabelFrame, StringVar, Tk, messagebox
+from tkinter.ttk import Style, Treeview
+from typing import List, Tuple
+
 from constants import BASEFONT, BUTTONFONT
+from data import Reservation, Showtime
+from databaseSDK import reservations, showtimes
 
 __showtimes: List[Showtime]
 

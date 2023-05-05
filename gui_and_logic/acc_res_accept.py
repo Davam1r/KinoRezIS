@@ -1,13 +1,21 @@
-from tkinter import Tk, messagebox, LabelFrame, Label, Entry, Button,\
-                    StringVar
-from tkinter.ttk import Treeview, Style
+from tkinter import Button, Entry, Label, LabelFrame, StringVar, Tk, messagebox
+from tkinter.ttk import Style, Treeview
 from typing import Tuple
-from databaseSDK import reservations
-from data import Reservation, Showtime
+
 from constants import BASEFONT, BUTTONFONT
+from data import Reservation, Showtime
+from databaseSDK import reservations
 
 
 def __extract_values(res: Reservation) -> Tuple[str, str, str, str]:
+    """
+    Extracts values out of Reservation to a tuple that represents
+    one record in the table of Reservations
+
+    @param res Reservation
+
+    @return tuple that represents one record in table of Reservations
+    """
     return (res.name, res.showtime.movie_name,
             res.showtime.date, res.showtime.time)
 
@@ -15,6 +23,15 @@ def __extract_values(res: Reservation) -> Tuple[str, str, str, str]:
 def __click_load_data(table: Treeview,
                       name: StringVar, movie: StringVar,
                       date: StringVar, time: StringVar) -> None:
+    """
+    Loads data from clicked record in the table into correct GUI entries
+
+    @param table
+    @param name
+    @param movie
+    @param date
+    @param time
+    """
     selected = table.focus()
     if selected == "":
         return
@@ -28,12 +45,25 @@ def __click_load_data(table: Treeview,
 
 
 def __search(table: Treeview, name: str) -> None:
+    """
+    Loads records that have 'name' as a substring from database
+    into Treeview table
+
+    @param table
+    @param name substring to be searched in reservations DB
+    """
     table.delete(*table.get_children())
     for res in reservations.find_by_name(name):
         table.insert('', 'end', values=__extract_values(res))
 
 
 def __remove_reservation(table: Treeview) -> None:
+    """
+    Removes Reservation selected in Treeview table from
+    both the table and reservation DB
+
+    @param table
+    """
     selected = table.focus()
     if selected == "":
         messagebox.showerror('',
@@ -54,7 +84,25 @@ def __remove_reservation(table: Treeview) -> None:
     messagebox.showinfo('', "Využití rezervace bylo potvrzeno")
 
 
+def __load_reservations(table: Treeview) -> None:
+    """
+    Load reservations from database into specified Treeview table
+
+    @param table
+    """
+    for res in reservations.get_all():
+        table.insert('', 'end', values=__extract_values(res))
+
+
 def __table(frame: LabelFrame) -> Treeview:
+    """
+    Draws a Treeview table for showing reservations
+    into specified GUI frame
+
+    @param frame
+
+    @return created Treeview table
+    """
     style = Style()
     style.theme_use("clam")
     style.configure("myS.Treeview", font=BASEFONT)
@@ -74,13 +122,17 @@ def __table(frame: LabelFrame) -> Treeview:
     table.column(3, anchor="center", width=100)
     table.column(4, anchor="center", width=30)
 
-    for res in reservations.get_all():
-        table.insert('', 'end', values=__extract_values(res))
-
     return table
 
 
 def __namesearch(frame: LabelFrame, table: Treeview) -> None:
+    """
+    Draws namesearch section elements into specified GUI frame
+    These elements are: search Entry, search Button
+
+    @param frame
+    @param table needed for button action
+    """
     label1 = Label(frame, text="Vyhledávání dle jména:", font=BASEFONT)
     label1.pack(side="left", padx=20)
     entry = Entry(frame, font=BASEFONT)
@@ -92,6 +144,17 @@ def __namesearch(frame: LabelFrame, table: Treeview) -> None:
 
 
 def __res_accept(frame: LabelFrame, table: Treeview) -> None:
+    """
+    Draws reservation acceptation elements into specified GUI frame
+    These elements are:
+    Entries for data from selected record in Treeview
+    Accept button
+
+    Includes functionality for loading data by clicking a record
+
+    @param frame
+    @param table needed for button action and data loading
+    """
     name, movie, date = StringVar(), StringVar(), StringVar()
     time = StringVar()
 
@@ -127,7 +190,7 @@ def __res_accept(frame: LabelFrame, table: Treeview) -> None:
 
 def accept_reservations() -> None:
     """
-    Opens Reservation management screen
+    Draws Reservation management screen
     """
     root = Tk()
     root.title("KinoRezIS")
@@ -140,6 +203,7 @@ def accept_reservations() -> None:
         f.pack(fill="both", expand=1, padx=10, pady=10)
 
     table = __table(frame1)
+    __load_reservations(table)
 
     __namesearch(frame2, table)
 
