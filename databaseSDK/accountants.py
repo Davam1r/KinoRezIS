@@ -14,8 +14,7 @@ def add(accountant: Accountant) -> None:
 
     @param accountant
     """
-    if (accountant is None or accountant.name is None or
-            accountant.login is None or accountant.password is None):
+    if (accountant is None):
         return
 
     __cursor.execute("INSERT INTO accountants VALUES (?, ?, ?)",

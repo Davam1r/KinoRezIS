@@ -15,8 +15,7 @@ def add(showtime: Showtime) -> None:
 
     @param showtime
     """
-    if (showtime is None or showtime.movie_name is None or
-            showtime.date is None or showtime.time is None):
+    if (showtime is None):
         return
 
     __cursor.execute("INSERT INTO showtimes VALUES (?, ?, ?)",

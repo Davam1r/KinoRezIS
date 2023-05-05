@@ -14,8 +14,7 @@ def add(reservation: Reservation) -> None:
 
     @param reservation
     """
-    if (reservation is None or
-            reservation.name is None or reservation.showtime is None):
+    if (reservation is None):
         return
 
     __cursor.execute("INSERT INTO reservations VALUES (?, ?)",
