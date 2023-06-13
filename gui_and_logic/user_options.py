@@ -76,7 +76,6 @@ def __two_buttons(root: Tk,
     @param text for button 2
     @param function for button 2
     """
-    root.title("KinoRezIS")
     root.geometry("400x300+400+300")
 
     frame = Frame()
@@ -103,6 +102,7 @@ def admin_options() -> int:
     __selected_option = 0
 
     root = Tk()
+    root.title("KinoRezIS - ADMIN")
 
     __two_buttons(root,
                   "Přidat promítací termín", lambda: __add_showtime(root),
@@ -121,6 +121,7 @@ def accountant_options() -> int:
     __selected_option = 0
 
     root = Tk()
+    root.title("KinoRezIS - ÚČETNÍ")
 
     __two_buttons(root,
                   "Zapsat rezervaci", lambda: __add_reservation(root),
