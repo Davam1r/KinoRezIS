@@ -125,6 +125,6 @@ def accountant_options() -> int:
 
     __two_buttons(root,
                   "Zapsat rezervaci", lambda: __add_reservation(root),
-                  "Smazat rezervaci", lambda: __remove_reservation(root))
+                  "Kontrola rezervací", lambda: __remove_reservation(root))
 
     return __selected_option
