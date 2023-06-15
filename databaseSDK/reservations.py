@@ -29,7 +29,8 @@ def remove(res: Reservation) -> None:
     @param reservation
     """
     __cursor.execute("DELETE FROM reservations WHERE rowid IN \
-                     (SELECT showtimeID FROM reservations JOIN showtimes ON \
+                     (SELECT reservations.rowid FROM \
+                     reservations JOIN showtimes ON \
                      reservations.showtimeID=showtimes.rowid WHERE \
                      reservations.name=? AND showtimes.name=? AND \
                      showtimes.date=? AND showtimes.time=? LIMIT 1)",

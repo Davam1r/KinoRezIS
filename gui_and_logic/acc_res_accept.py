@@ -79,6 +79,8 @@ def __remove_reservation(table: Treeview) -> None:
     time = selected_item["values"][3]
     res = Reservation(name, Showtime(movie, date, time))
 
+    # print(name + " " + movie + " " + date + " " + time)
+
     reservations.remove(res)
     table.delete(selected)
     messagebox.showinfo('', "Využití rezervace bylo potvrzeno")
