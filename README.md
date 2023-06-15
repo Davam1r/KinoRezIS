@@ -5,4 +5,4 @@ simple
 
 ## installation:
 
-    pyinstaller --specpath build --clean --onefile main.py
+    python -m PyInstaller --specpath build --clean --onefile -n KinoRezIS main.py
